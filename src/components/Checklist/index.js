@@ -1,5 +1,5 @@
 import React from 'react';
-import Character from './Character.js';
+import Character from '../Character';
 
 class Checklist extends React.Component {
   render() {

@@ -1,6 +1,6 @@
 import React from 'react';
-import Timer from './Timer.js';
-import Checklist from './Checklist.js';
+import Timer from '../Timer';
+import Checklist from '../Checklist';
 
 class Overlay extends React.Component {
   render() {

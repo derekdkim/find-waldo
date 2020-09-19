@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import Photo from './components/Photo.js';
-import Overlay from './components/Overlay.js';
+import Photo from './components/Photo';
+import Overlay from './components/Overlay';
 
 function App() {
   return (
