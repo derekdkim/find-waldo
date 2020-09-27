@@ -19,9 +19,6 @@ class Photo extends React.Component {
 
     var xPos = event.clientX;
     var yPos = event.clientY;
-    console.log(`X ${xPos} Y ${yPos}`);
-    console.log(`Photo Left${rect.left} ${rect.top}`);
-    console.log(`Final X ${(event.clientX - rect.left) / event.target.clientWidth} Y ${(event.clientY - rect.top) / event.target.clientHeight}`);
 
     const selectPos = {
       clientX: xPos,
@@ -38,11 +35,13 @@ class Photo extends React.Component {
 
   render() {
     let select;
+
     if (this.state.windowExists) {
       select = <Select pos={this.state.selectPos} />
     } else {
       select = <div></div>
     }
+
     return (
       <div>
         <img 

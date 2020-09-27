@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './index.css';
+import firebase from 'firebase';
+import firebaseConfig from '../../firebase.config.js';
+
+import fetchData from '../../firebase/fetchData.js';
 
 function Select(props) {
   const [selectionPos, setSelectionPos] = useState(props.pos);
@@ -14,6 +18,31 @@ function Select(props) {
     setSelectionOffset(selectionPos.relY > 0.5 ? -45 : 30);
   }, [selectionPos]);
 
+  // Listener for Dropdown Menu on Selection Window
+  const handleChange = async (event) => {
+    const selectedChar = event.target.value;
+
+    // Initialize Firebase. Conditional calling prevents multiple initializations.
+    if (!firebase.apps.length){
+      firebase.initializeApp(firebaseConfig);
+    }
+
+    // Call Firestore DB to get data for matching value
+    try {
+      const refData = await fetchData(selectedChar);
+
+      if (boundaryCheck(selectionPos.relX, refData.x) && boundaryCheck(selectionPos.relY, refData.y)) {
+        console.log('Correct!');
+      } else {
+        console.log('Incorrect!');
+      }
+      
+    } catch (e) {
+      console.log('Failed to call the server.', e);
+    }
+
+  }
+
   return(
     <div>
       <div className='selectionWindow' style={{ 
@@ -21,10 +50,11 @@ function Select(props) {
           top: `${selectionPos.clientY - 25}px` 
         }}>
       </div>
-      <select className='selectionMenu' style={{
+      <select className='selectionMenu' onChange={handleChange} style={{
         left: `${selectionPos.clientX - 50}px`,
         top: `${selectionPos.clientY + selectionOffset}px`
       }}>
+        <option value='' selected disabled hidden>Which Character?</option>
         <option value='waldo'>Waldo</option>
         <option value='centaur'>Centaur</option>
         <option value='redcoat'>British Redcoat</option>
@@ -34,6 +64,19 @@ function Select(props) {
     </div>
 
   );
+}
+
+const boundaryCheck = (coord, ref) => {
+  // Checks if a given set of coordinates are within += 0.3 of a reference coordinate
+  const lowerRange = ref - 0.3;
+  const upperRange = ref + 0.3;
+
+  if (coord >= lowerRange && coord <= upperRange) {
+    return true;
+  } else {
+    return false;
+  }
+
 }
 
 export default Select;

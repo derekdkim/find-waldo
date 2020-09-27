@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-./find-waldo-service-acc.json
+find-waldo-service-acc.json
 
 # production
 /build
