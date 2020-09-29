@@ -1,0 +1,10 @@
+.overlay {
+  position: fixed;
+  height: 100%;
+  width: 20%;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  overflow-x: hidden;
+  background-color: brown;
+}

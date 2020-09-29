@@ -1,14 +1,11 @@
 import React from 'react';
 import './App.css';
-import Photo from './components/Photo';
-import Overlay from './components/Overlay';
+import Game from './components/Game';
 
 function App() {
+
   return (
-    <div className="App">
-        <Photo />
-        <Overlay />
-    </div>
+        <Game />
   );
 }
 

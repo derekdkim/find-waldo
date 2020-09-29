@@ -9,6 +9,7 @@ function Select(props) {
   const [selectionPos, setSelectionPos] = useState(props.pos);
   const [selectionOffset, setSelectionOffset] = useState(0);
 
+  // Update window position to latest mouse click position
   useEffect(() => {
     setSelectionPos(props.pos);
   }, [props]);
@@ -32,6 +33,9 @@ function Select(props) {
       const refData = await fetchData(selectedChar);
 
       if (boundaryCheck(selectionPos.relX, refData.x) && boundaryCheck(selectionPos.relY, refData.y)) {
+        let workingCharList = props.charList;
+        workingCharList[selectedChar].found = true;
+        props.setCharList(workingCharList);
         console.log('Correct!');
       } else {
         console.log('Incorrect!');
@@ -43,7 +47,7 @@ function Select(props) {
 
   }
 
-  return(
+  return (
     <div>
       <div className='selectionWindow' style={{ 
           left: `${selectionPos.clientX - 25}px`, 

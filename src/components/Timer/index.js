@@ -1,11 +1,9 @@
 import React from 'react';
 
-class Timer extends React.Component {
-  render() {
-    return (
-      <p>00:01</p>
-    );
-  }
+function Timer () {
+  return (
+    <p>00:01</p>
+  );
 }
 
 export default Timer;

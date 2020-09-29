@@ -1,16 +1,16 @@
 import React from 'react';
 import Timer from '../Timer';
 import Checklist from '../Checklist';
+import './index.css';
 
-class Overlay extends React.Component {
-  render() {
-    return (
-      <div>
-        <Timer />
-        <Checklist />
-      </div>
-    );
-  }
+function Overlay (props) {
+
+  return (
+    <div className='overlay'>
+      <Timer />
+      <Checklist charList={props.charList}/>
+    </div>
+  );
 }
 
 export default Overlay;

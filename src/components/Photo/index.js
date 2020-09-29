@@ -1,20 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from '../Select';
 import './index.css';
 
-class Photo extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      windowStyle: {},
-      selectStyle: {},
-      windowExists: false
-    }
-    
-    this.handleClick = this.handleClick.bind(this);
-  }
+function Photo (props) {
+  const [selectPos, setSelectPos] = useState({});
+  const [windowDisplay, setWindowDisplay] = useState(false);
 
-  handleClick(event) {
+  function handleClick(event) {
     var rect = event.target.getBoundingClientRect();
 
     var xPos = event.clientX;
@@ -27,34 +19,26 @@ class Photo extends React.Component {
       relY: (yPos - rect.top) / event.target.clientHeight
     }
 
-    this.setState({ 
-      selectPos: selectPos,
-      windowExists: true
-    });
+    setSelectPos(selectPos);
+    setWindowDisplay(true);
   }
 
-  render() {
-    let select;
+  useEffect(() => {
+    props.setCharList(props.charList);
+  }, [props]);
 
-    if (this.state.windowExists) {
-      select = <Select pos={this.state.selectPos} />
-    } else {
-      select = <div></div>
-    }
+  return (
+    <div>
+      <img 
+        src='https://firebasestorage.googleapis.com/v0/b/find-waldo-8be9b.appspot.com/o/WheresWallyAtWembley_6.jpg?alt=media&token=bc667aaf-ae09-476b-b226-8a4d6b8207c5'
+        alt='Waldo'
+        className='Photo'
+        onClick={handleClick}
+      />
+      {windowDisplay ? <Select pos={selectPos} charList={props.charList} setCharList={props.setCharList} /> : <div></div>}
+    </div>
 
-    return (
-      <div>
-        <img 
-          src='https://firebasestorage.googleapis.com/v0/b/find-waldo-8be9b.appspot.com/o/WheresWallyAtWembley_6.jpg?alt=media&token=bc667aaf-ae09-476b-b226-8a4d6b8207c5'
-          alt='Waldo'
-          className='Photo'
-          onClick={this.handleClick}
-        />
-        {select}
-      </div>
-
-    );
-  }
+  );
 }
 
 export default Photo;
