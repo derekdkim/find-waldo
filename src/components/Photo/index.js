@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Select from '../Select';
 import './index.css';
 
@@ -23,10 +23,6 @@ function Photo (props) {
     setWindowDisplay(true);
   }
 
-  useEffect(() => {
-    props.setCharList(props.charList);
-  }, [props]);
-
   return (
     <div>
       <img 
@@ -35,7 +31,7 @@ function Photo (props) {
         className='Photo'
         onClick={handleClick}
       />
-      {windowDisplay ? <Select pos={selectPos} charList={props.charList} setCharList={props.setCharList} /> : <div></div>}
+      {windowDisplay ? <Select pos={selectPos} charList={props.charList} updateCharList={props.updateCharList} /> : <div></div>}
     </div>
 
   );

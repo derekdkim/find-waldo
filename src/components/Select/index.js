@@ -6,12 +6,13 @@ import firebaseConfig from '../../firebase.config.js';
 import fetchData from '../../firebase/fetchData.js';
 
 function Select(props) {
-  const [selectionPos, setSelectionPos] = useState(props.pos);
+  const [selectionPos, setSelectionPos] = useState({});
   const [selectionOffset, setSelectionOffset] = useState(0);
 
   // Update window position to latest mouse click position
   useEffect(() => {
-    setSelectionPos(props.pos);
+    const propPos = props.pos;
+    setSelectionPos(propPos);
   }, [props]);
 
   useEffect(() => {
@@ -28,14 +29,18 @@ function Select(props) {
       firebase.initializeApp(firebaseConfig);
     }
 
+
+
     // Call Firestore DB to get data for matching value
     try {
       const refData = await fetchData(selectedChar);
 
       if (boundaryCheck(selectionPos.relX, refData.x) && boundaryCheck(selectionPos.relY, refData.y)) {
-        let workingCharList = props.charList;
+        console.log(`<Select /> charList`);
+        let workingCharList = { ...props.charList };
         workingCharList[selectedChar].found = true;
-        props.setCharList(workingCharList);
+        console.log(workingCharList);
+        props.updateCharList(workingCharList);
         console.log('Correct!');
       } else {
         console.log('Incorrect!');

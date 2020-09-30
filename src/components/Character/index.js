@@ -1,27 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import './index.css';
 
 function Character (props) {
-  const [foundStatus, setFoundStatus] = useState(props.foundStatus);
-  const [additionalStyle, setAdditionalStyle] = useState({});
+  const [foundStatus, setFoundStatus] = useState(false);
 
   useEffect(() => {
-    setFoundStatus(props.foundStatus);
+    const found = props.charInfo.found;
+    setFoundStatus(found);
   }, [props]);
 
-  useEffect(() => {
-    if (foundStatus) {
-      console.log('foundStatus changed');
-      setAdditionalStyle({
-        'colour': 'green',
-        'text-decoration': 'line-through'
-      });
-    }
-  }, [foundStatus]);
-
-
-
   return (
-    <p style={additionalStyle}>{props.name}</p>
+    <p className={foundStatus ? 'found' : 'notFound'}>{props.charInfo.name}</p>
   );
 }
 

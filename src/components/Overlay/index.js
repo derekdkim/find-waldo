@@ -8,7 +8,7 @@ function Overlay (props) {
   return (
     <div className='overlay'>
       <Timer />
-      <Checklist charList={props.charList}/>
+      <Checklist charList={props.charList} />
     </div>
   );
 }

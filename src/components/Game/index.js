@@ -8,12 +8,20 @@ function Game() {
   const [charList, setCharList] = useState(charactersToFind);
 
   useEffect(() => {
+    console.log(`<Game /> charList:`);
+    console.log(charList);
     setCharList(charList);
   }, [charList]);
 
+  function updateCharList (newCharList) {
+    console.log('CharList updated!');
+    console.log(charList);
+    setCharList(newCharList);
+  }
+
   return (
     <div id="game">
-        <Photo charList={charList} setCharList={setCharList}/>
+        <Photo charList={charList} updateCharList={updateCharList} />
         <Overlay charList={charList} />
     </div>
   );

@@ -1,0 +1,9 @@
+.found {
+  color: grey;
+  text-decoration: line-through;
+}
+
+.notFound {
+  color: white;
+  text-decoration: none;
+}
