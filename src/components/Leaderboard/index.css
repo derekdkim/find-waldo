@@ -1,0 +1,12 @@
+.leaderboardContainer {
+  position: fixed;
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  background-color: white;
+  z-index: 9;
+}
+
+.leaderboardEntry {
+  color: black;
+}

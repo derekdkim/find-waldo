@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import formatTime from '../../misc/formatTime.js';
 
 function Timer (props) {
   const { secondsElapsed, updateTime, gameOver } = props;
@@ -15,16 +16,6 @@ function Timer (props) {
     // ClearInterval on Unmount
     return () => clearInterval(interval);
   }, [gameOver, secondsElapsed, updateTime]);
-
-  const formatTime = (timeInSec) => {
-    const min = Math.floor(timeInSec / 60);
-    const sec = Math.floor(timeInSec % 60);
-
-    const formattedMin = min >= 10 ? `${min}` : `0${min}`;
-    const formattedSec = sec >= 10 ? `${sec}` : `0${sec}`;
-
-    return `${formattedMin}:${formattedSec}`;
-  }
 
   return (
   <p>{formatTime(secondsElapsed)}</p>

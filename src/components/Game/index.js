@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Photo from '../Photo';
 import Overlay from '../Overlay';
+import Leaderboard from '../Leaderboard';
+import LeaderboardInputForm from '../LeaderboardInputForm';
 import charactersToFind from '../../data/wembleyCharacters.js';
 import './index.css';
 
 function Game() {
   const [charList, setCharList] = useState(charactersToFind);
   const [gameOver, setGameOver] = useState(false);
+  const [submittedScore, setSubmittedScore] = useState(false);
   const [secondsElapsed, updateTime] = useState(0);
 
   useEffect(() => {
@@ -33,7 +36,7 @@ function Game() {
     if(gameOver) {
       console.log('The game is finished. Congratulations!');
     }
-  }, [gameOver]);
+  }, [gameOver, secondsElapsed]);
 
   function updateCharList (newCharList) {
     setCharList(newCharList);
@@ -43,6 +46,7 @@ function Game() {
     <div id="game">
         <Photo charList={charList} updateCharList={updateCharList} gameOver={gameOver} />
         <Overlay charList={charList} gameOver={gameOver} secondsElapsed={secondsElapsed} updateTime={updateTime} />
+        { gameOver && submittedScore ? <Leaderboard /> : gameOver ? <LeaderboardInputForm setSubmittedScore={setSubmittedScore} secondsElapsed={secondsElapsed}/> : <div></div> }
     </div>
   );
 }

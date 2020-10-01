@@ -6,7 +6,8 @@ import firebaseConfig from '../../firebase.config.js';
 import fetchData from '../../firebase/fetchData.js';
 
 function Select(props) {
-  const [selectionPos, setSelectionPos] = useState({});
+  const initialPos = props.pos;
+  const [selectionPos, setSelectionPos] = useState(initialPos);
   const [selectionOffset, setSelectionOffset] = useState(0);
 
   // Update window position to latest mouse click position

@@ -6,6 +6,10 @@ service cloud.firestore {
       allow read;
     }
 
+    match /leaderboard/{entry} {
+      allow read, write;
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }
