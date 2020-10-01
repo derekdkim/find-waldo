@@ -7,7 +7,7 @@ function Overlay (props) {
 
   return (
     <div className='overlay'>
-      <Timer />
+      <Timer gameOver={props.gameOver} secondsElapsed={props.secondsElapsed} updateTime={props.updateTime} />
       <Checklist charList={props.charList} />
     </div>
   );

@@ -36,10 +36,8 @@ function Select(props) {
       const refData = await fetchData(selectedChar);
 
       if (boundaryCheck(selectionPos.relX, refData.x) && boundaryCheck(selectionPos.relY, refData.y)) {
-        console.log(`<Select /> charList`);
         let workingCharList = { ...props.charList };
         workingCharList[selectedChar].found = true;
-        console.log(workingCharList);
         props.updateCharList(workingCharList);
         console.log('Correct!');
       } else {
@@ -59,11 +57,11 @@ function Select(props) {
           top: `${selectionPos.clientY - 25}px` 
         }}>
       </div>
-      <select className='selectionMenu' onChange={handleChange} style={{
+      <select value='' className='selectionMenu' onChange={handleChange} style={{
         left: `${selectionPos.clientX - 50}px`,
         top: `${selectionPos.clientY + selectionOffset}px`
       }}>
-        <option value='' selected disabled hidden>Which Character?</option>
+        <option value='' disabled hidden>Which Character?</option>
         <option value='waldo'>Waldo</option>
         <option value='centaur'>Centaur</option>
         <option value='redcoat'>British Redcoat</option>

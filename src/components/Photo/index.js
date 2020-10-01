@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from '../Select';
 import './index.css';
 
@@ -7,21 +7,29 @@ function Photo (props) {
   const [windowDisplay, setWindowDisplay] = useState(false);
 
   function handleClick(event) {
-    var rect = event.target.getBoundingClientRect();
+    if (!props.gameOver) {
+      var rect = event.target.getBoundingClientRect();
 
-    var xPos = event.clientX;
-    var yPos = event.clientY;
-
-    const selectPos = {
-      clientX: xPos,
-      clientY: yPos,
-      relX: (xPos - rect.left) / event.target.clientWidth,
-      relY: (yPos - rect.top) / event.target.clientHeight
+      var xPos = event.clientX;
+      var yPos = event.clientY;
+  
+      const selectPos = {
+        clientX: xPos,
+        clientY: yPos,
+        relX: (xPos - rect.left) / event.target.clientWidth,
+        relY: (yPos - rect.top) / event.target.clientHeight
+      }
+  
+      setSelectPos(selectPos);
+      setWindowDisplay(true);
     }
-
-    setSelectPos(selectPos);
-    setWindowDisplay(true);
   }
+
+  useEffect(() => {
+    if (props.gameOver) {
+      setWindowDisplay(false);
+    }
+  }, [props]);
 
   return (
     <div>
