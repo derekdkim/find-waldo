@@ -6,5 +6,9 @@
   top: 0;
   right: 0;
   overflow-x: hidden;
-  background-color: brown;
+  background-color: #001233;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  user-select: none;
 }

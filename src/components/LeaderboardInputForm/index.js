@@ -28,11 +28,16 @@ function LeaderboardInputForm (props) {
 
   return(
     <div id='leaderboardFormContainer' className={hideForm ? 'hidden' : 'inputForm'}>
+      <h1>You found them all!</h1>
+      <p>Would you like to enter the leaderboard?</p>
       <p>Your Time: {formatTime(secondsElapsed)}</p>
       <label htmlFor='name-input'>Your Name:</label>
       <input id='name-input' type='text' onChange={handleChange}></input>
-      <button onClick={handleSubmit}>Submit</button>
-      <button onClick={handleExit}>I'll Pass</button>
+      <div id='button-container'>
+        <button className='form-btn' id='accept-btn' onClick={handleSubmit}>Submit</button>
+        <button className='form-btn' id='decline-btn' onClick={handleExit}>I'll Pass</button>
+      </div>
+
     </div>
   );
 }
