@@ -30,6 +30,8 @@
 #name-input {
   height: 10%;
   width: 50%;
+  border: none;
+  text-align: center;
 }
 
 #button-container {
@@ -49,15 +51,19 @@
 }
 
 #accept-btn {
-  background-color: #dc2f02;
-  color: #ffbe0b;
-}
-
-#decline-btn {
-  background-color: #14213d;
+  background-color: #001233;
   color: white;
 }
 
-.form-btn:hover {
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24);
+#accept-btn:hover {
+  background-color: #023e7d;
+}
+
+#decline-btn {
+  background-color: #d90429;
+  color: white;
+}
+
+#decline-btn:hover {
+  background-color: #ef233c;
 }

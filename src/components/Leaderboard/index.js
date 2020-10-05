@@ -1,10 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import fetchLeaderboard from '../../firebase/fetchLeaderboard.js';
 import formatTime from '../../misc/formatTime.js';
+import Table from '../Table';
 import './index.css';
 
 function Leaderboard () {
   const [leaderboardData, setLeaderboardData] = useState([]);
+
+  const columns = [
+    {
+      Header: 'Rank',
+      Cell: (row) => {
+        return <div>{row.row.index + 1}</div>;
+      }
+    },
+    {
+      Header: 'Name',
+      accessor: 'name'
+    },
+    {
+      Header: 'Time',
+      accessor: 'time',
+      Cell: (props) => {
+      return <div>{formatTime(props.value)}</div>
+      }
+    }
+  ]
 
   useEffect(() => {
     // async function required to access fetched Promise object
@@ -26,19 +47,20 @@ function Leaderboard () {
     renderData();
   }, []);
 
+  const handleClick = () => {
+    window.location.reload();
+    return false;
+  }
+
   return(
     <div className='leaderboardContainer'>
-      {
-        <ul className='leaderboardList'>
-          {
-            leaderboardData.map((entry, index) => {
-              return <li className='leaderboardEntry' key={index}>
-                      {`${formatTime(entry.time)}   ${entry.name}`}
-                    </li>
-            })
-          }
-      </ul>
-      }
+      <div id='leaderboardHeader'>
+        <h1>Leaderboard</h1>
+      </div>
+      <Table columns={columns} data={leaderboardData}/>
+      <button onClick={handleClick} id='reload-btn'>
+        Play Again
+      </button>
     </div>
   );
 }

@@ -1,12 +1,43 @@
 .leaderboardContainer {
   position: fixed;
-  width: 80%;
+  width: 50%;
   height: 80%;
   margin: auto;
-  background-color: white;
+  background-color: #ffbe0b;
   z-index: 9;
+  box-shadow: 0 0 0 100vmax rgba(0,0,0,.3);
+}
+
+.leaderboardContainer h1 {
+  background-color: #e63946;
+  color: #ffbe0b;
+  margin-top: 0;
+  padding: 5% 0%;
+  text-align: center;
+  height: 30%;
+  user-select: none;
 }
 
 .leaderboardEntry {
   color: black;
+}
+
+table {
+  width: 100%;
+}
+
+#reload-btn {
+  border: none;
+  border-radius: 50px;
+  width: 30%;
+  height: 8%;
+  font-size: 0.8em;
+  margin-top: 10%;
+  background-color: #001233;
+  color: white;
+  user-select: none;
+}
+
+#reload-btn:hover {
+  background-color: #023e7d;
 }
